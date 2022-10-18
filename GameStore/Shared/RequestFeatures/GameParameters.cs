@@ -1,0 +1,19 @@
+﻿using System;
+
+namespace Shared.RequestFeatures
+{
+    public class GameParameters:RequestParameters
+    {
+         public string? CategoryName { get; set; }
+       
+        public DateTime PostFrom { get; set; }
+        public DateTime PostTo { get; set; }
+        
+        public bool ValidDateTimeRange => PostTo >= PostFrom;
+
+        public string? SearchTerm { get; set; }
+       
+        
+
+    }
+}
