@@ -19,7 +19,7 @@ namespace Repository.Extensions
           
             string[] categories = categoryName.Split(',');
 
-            //Todo not done
+            
             return games.Where(g=>g.Categories.Any(c=>categoryName.Contains(c.Title)));
         }
 
