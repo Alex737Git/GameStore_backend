@@ -224,15 +224,49 @@ namespace GameStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CommentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    GameId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Comments_Comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Comments_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "04121065-1153-4765-bdcb-eff9b71644c1", "7c24320a-9b70-449d-974f-73feade11bea", "Authenticated", "AUTHENTICATED" },
-                    { "3f0ed8f7-af51-4791-aaaa-624983ff41ab", "0e6ec24d-415f-46e8-8c1e-ea372d68a2bb", "Guest", "GUEST" },
-                    { "49ac62c3-aff0-4aa8-a19f-d9513d7a0ee5", "c35f7479-4de2-4456-9cd6-37e8792eed2f", "Manager", "MANAGER" },
-                    { "bb479d41-1b85-45c7-a566-14e125f50e37", "95008515-c1ff-4e36-acf3-f9c43ee0015b", "Admin", "ADMIN" }
+                    { "4c2bf1d4-f563-4814-89f2-33d9f3db995b", "40a0e356-87b0-4bab-82af-db05d4147d4e", "Manager", "MANAGER" },
+                    { "6838336e-67a4-47eb-aebd-2d95fd56a8e4", "c96011f6-288e-4217-ae71-655c204e7c85", "Guest", "GUEST" },
+                    { "d1213724-add6-4fc4-89fb-e0d10a52dcf8", "f071325e-a82e-47f7-9ac7-ebd8ca6c0842", "Authenticated", "AUTHENTICATED" },
+                    { "ea9667ca-e989-4a73-adba-e3b66946e3c0", "484ca0da-f389-4169-a52d-a6f4decb6f3b", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -285,6 +319,21 @@ namespace GameStore.Migrations
                 column: "GamesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_CommentId",
+                table: "Comments",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_GameId",
+                table: "Comments",
+                column: "GameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Games_UserId",
                 table: "Games",
                 column: "UserId");
@@ -309,6 +358,9 @@ namespace GameStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "CategoryGame");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -62,6 +62,47 @@ namespace GameStore.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Entities.Models.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("GameId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Entities.Models.Game", b =>
                 {
                     b.Property<Guid>("Id")
@@ -201,29 +242,29 @@ namespace GameStore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3f0ed8f7-af51-4791-aaaa-624983ff41ab",
-                            ConcurrencyStamp = "0e6ec24d-415f-46e8-8c1e-ea372d68a2bb",
+                            Id = "6838336e-67a4-47eb-aebd-2d95fd56a8e4",
+                            ConcurrencyStamp = "c96011f6-288e-4217-ae71-655c204e7c85",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         },
                         new
                         {
-                            Id = "04121065-1153-4765-bdcb-eff9b71644c1",
-                            ConcurrencyStamp = "7c24320a-9b70-449d-974f-73feade11bea",
+                            Id = "d1213724-add6-4fc4-89fb-e0d10a52dcf8",
+                            ConcurrencyStamp = "f071325e-a82e-47f7-9ac7-ebd8ca6c0842",
                             Name = "Authenticated",
                             NormalizedName = "AUTHENTICATED"
                         },
                         new
                         {
-                            Id = "49ac62c3-aff0-4aa8-a19f-d9513d7a0ee5",
-                            ConcurrencyStamp = "c35f7479-4de2-4456-9cd6-37e8792eed2f",
+                            Id = "4c2bf1d4-f563-4814-89f2-33d9f3db995b",
+                            ConcurrencyStamp = "40a0e356-87b0-4bab-82af-db05d4147d4e",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "bb479d41-1b85-45c7-a566-14e125f50e37",
-                            ConcurrencyStamp = "95008515-c1ff-4e36-acf3-f9c43ee0015b",
+                            Id = "ea9667ca-e989-4a73-adba-e3b66946e3c0",
+                            ConcurrencyStamp = "484ca0da-f389-4169-a52d-a6f4decb6f3b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -359,6 +400,25 @@ namespace GameStore.Migrations
                     b.Navigation("Parent");
                 });
 
+            modelBuilder.Entity("Entities.Models.Comment", b =>
+                {
+                    b.HasOne("Entities.Models.Comment", null)
+                        .WithMany("Children")
+                        .HasForeignKey("CommentId");
+
+                    b.HasOne("Entities.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId");
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Game");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Models.Game", b =>
                 {
                     b.HasOne("Entities.Models.User", "User")
@@ -421,6 +481,11 @@ namespace GameStore.Migrations
                 });
 
             modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("Entities.Models.Comment", b =>
                 {
                     b.Navigation("Children");
                 });

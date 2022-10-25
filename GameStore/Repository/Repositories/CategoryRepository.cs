@@ -57,7 +57,7 @@ namespace Repository.Repositories
         public async Task<IEnumerable<Category>?> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
             await FindByCondition(x => ids.Contains(x.Id), trackChanges)
                 .ToListAsync();
-        //
+        
         public void DeleteCategory(Category category) => Delete(category);
       
        
