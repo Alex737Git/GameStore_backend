@@ -32,7 +32,8 @@ public class RepositoryContext : IdentityDbContext<User>
             .HasMany<Game>(e => e.Games)
             .WithOne(e => e.User)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
+        modelBuilder.Entity<Comment>().HasKey(s => s.Id);
 
 
         modelBuilder.ApplyConfiguration(new RoleConfiguration());

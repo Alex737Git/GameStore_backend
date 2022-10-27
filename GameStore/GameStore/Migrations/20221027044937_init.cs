@@ -263,10 +263,10 @@ namespace GameStore.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c2bf1d4-f563-4814-89f2-33d9f3db995b", "40a0e356-87b0-4bab-82af-db05d4147d4e", "Manager", "MANAGER" },
-                    { "6838336e-67a4-47eb-aebd-2d95fd56a8e4", "c96011f6-288e-4217-ae71-655c204e7c85", "Guest", "GUEST" },
-                    { "d1213724-add6-4fc4-89fb-e0d10a52dcf8", "f071325e-a82e-47f7-9ac7-ebd8ca6c0842", "Authenticated", "AUTHENTICATED" },
-                    { "ea9667ca-e989-4a73-adba-e3b66946e3c0", "484ca0da-f389-4169-a52d-a6f4decb6f3b", "Admin", "ADMIN" }
+                    { "2a64d45f-4a7b-46b3-80fa-b35367f14fb3", "74e94357-c5d3-4460-a4d1-9df48dd9551c", "Manager", "MANAGER" },
+                    { "4efa9932-bbbf-4c42-81f6-761a58cd5af3", "1bdeec3f-9510-4f48-bd71-4402d707c074", "Admin", "ADMIN" },
+                    { "6fff569f-8f76-4887-9c6c-c54cf4a98709", "1176e82c-aa54-4c1e-9f23-1c1c73fc9db2", "Authenticated", "AUTHENTICATED" },
+                    { "709aeebe-db37-4bfb-a376-817674f74b80", "1e48e191-6743-4079-a4bb-0afb768b2db3", "Guest", "GUEST" }
                 });
 
             migrationBuilder.CreateIndex(

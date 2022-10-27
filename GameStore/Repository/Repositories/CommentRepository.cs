@@ -54,9 +54,12 @@ public class CommentRepository: RepositoryBase<Comment>, ICommentRepository
         await FindByCondition(c => c.ParentId.Equals(commentId), trackChanges)
             .ToListAsync();
 
-    
-    
-    public void CreateComment(Comment comment) => Create(comment);
+     public async Task<IEnumerable<Comment>> GetAllCommentsByUser(string userId)
+     {
+       return  await FindByCondition(c => c.User.Id == userId,true).ToListAsync();
+     }
+
+     public void CreateComment(Comment comment) => Create(comment);
     
     public void DeleteComment(Comment comment) => Delete(comment);
 

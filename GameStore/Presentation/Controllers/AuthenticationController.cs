@@ -52,29 +52,6 @@ namespace Presentation.Controllers
             if (!await _service.AuthenticationService.ValidateUser(user))
                 return Unauthorized();
         
-            // if (!await _service.AuthenticationService.IsEmailConfirmed(user))
-            //     return Unauthorized(new AuthResponseDto { ErrorMessage = "UserName is not confirmed" });
-        
-            // if (await _service.AuthenticationService.IsUserLockOut(user.UserName))
-            // {
-            //     return Unauthorized(new AuthResponseDto { ErrorMessage = "The account is locked out" });
-            // }
-        
-            #region Check two factor validation
-        
-            // if (await _service.AuthenticationService.GetTwoFactorEnabledAsync(user))
-            // {
-            //     if (!await _service.AuthenticationService.IsEmailInTwoFactorProvidersAsync(user))
-            //     {
-            //         return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid 2-Step Verification Provider." });
-            //     }
-            //
-            //     await _service.AuthenticationService.GenerateOTPFor2StepVerification(user);
-            //     return Ok(new AuthResponseDto { Is2StepVerificationRequired = true, Provider = "UserName" });
-            // }
-        
-            #endregion
-        
             var token = await _service
                 .AuthenticationService.CreateToken();
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });

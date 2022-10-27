@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 using Shared.DataTransferObjects.ForAuth;
 using Shared.DataTransferObjects.ForCreation;
 using Shared.DataTransferObjects.ForShow;
@@ -13,7 +14,7 @@ public class MappingProfile : Profile
     {
         #region User
         CreateMap<UserForRegistrationDto, User>();
-        CreateMap<User, UserDto>();
+        CreateMap<User, UserDto>().ReverseMap();
         #endregion
 
         #region Game
@@ -48,6 +49,12 @@ public class MappingProfile : Profile
         CreateMap<CommentForCreationDto, Comment>()
             .ForPath(c=>c.Game.Id, cf=>cf.MapFrom(x=>x.GameId)).ReverseMap();
         CreateMap<CommentForUpdateDto, Comment>();
+
+        #endregion
+
+        #region Role
+
+        CreateMap<IdentityRole, RoleDto>();
 
         #endregion
     }

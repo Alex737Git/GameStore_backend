@@ -9,6 +9,7 @@ public class Game:BaseEntity
     public DateTime GameDate { get; set; }
     
     public IEnumerable<Category>? Categories { get; set; }
+    public IEnumerable<Comment>? Comments { get; set; }
     public User? User { get; set; }
 
     

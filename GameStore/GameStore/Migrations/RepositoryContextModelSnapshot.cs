@@ -242,29 +242,29 @@ namespace GameStore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6838336e-67a4-47eb-aebd-2d95fd56a8e4",
-                            ConcurrencyStamp = "c96011f6-288e-4217-ae71-655c204e7c85",
+                            Id = "709aeebe-db37-4bfb-a376-817674f74b80",
+                            ConcurrencyStamp = "1e48e191-6743-4079-a4bb-0afb768b2db3",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         },
                         new
                         {
-                            Id = "d1213724-add6-4fc4-89fb-e0d10a52dcf8",
-                            ConcurrencyStamp = "f071325e-a82e-47f7-9ac7-ebd8ca6c0842",
+                            Id = "6fff569f-8f76-4887-9c6c-c54cf4a98709",
+                            ConcurrencyStamp = "1176e82c-aa54-4c1e-9f23-1c1c73fc9db2",
                             Name = "Authenticated",
                             NormalizedName = "AUTHENTICATED"
                         },
                         new
                         {
-                            Id = "4c2bf1d4-f563-4814-89f2-33d9f3db995b",
-                            ConcurrencyStamp = "40a0e356-87b0-4bab-82af-db05d4147d4e",
+                            Id = "2a64d45f-4a7b-46b3-80fa-b35367f14fb3",
+                            ConcurrencyStamp = "74e94357-c5d3-4460-a4d1-9df48dd9551c",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "ea9667ca-e989-4a73-adba-e3b66946e3c0",
-                            ConcurrencyStamp = "484ca0da-f389-4169-a52d-a6f4decb6f3b",
+                            Id = "4efa9932-bbbf-4c42-81f6-761a58cd5af3",
+                            ConcurrencyStamp = "1bdeec3f-9510-4f48-bd71-4402d707c074",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -407,7 +407,7 @@ namespace GameStore.Migrations
                         .HasForeignKey("CommentId");
 
                     b.HasOne("Entities.Models.Game", "Game")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("GameId");
 
                     b.HasOne("Entities.Models.User", "User")
@@ -488,6 +488,11 @@ namespace GameStore.Migrations
             modelBuilder.Entity("Entities.Models.Comment", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("Entities.Models.Game", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>

@@ -23,30 +23,9 @@ namespace Presentation.Controllers
             _service = service;
         }
 
+        
 
-        // [HttpPut]
-        // [ServiceFilter(typeof(ValidationFilterAttribute))]
-        // public async Task<IActionResult> UpdateUserInfo([FromBody] UserForUpdateDto userForUpdate)
-        // {
-        //     var result = await _service.UserService.UpdateUserAsync(User.Identity.Name,userForUpdate, true);
-        //
-        //     if (!result.Succeeded)
-        //     {
-        //         var errors = result.Errors.Select(e => e.Body);
-        //
-        //         return BadRequest(new UserForUpdateResponse { Errors = errors, IsSuccessfulUpdate = false});
-        //     }
-        //
-        //      return NoContent();
-        //
-        // }
-
-        // [HttpGet]
-        // public async Task<IActionResult> GetUser()
-        // {
-        //     var user = await _service.UserService.GetUser(User.Identity.Name, false);
-        //     return Ok(user);
-        // }
+      
 
         [HttpPost]
         public async Task<IActionResult> Upload()

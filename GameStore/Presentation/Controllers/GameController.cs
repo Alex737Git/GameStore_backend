@@ -41,7 +41,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("user")]
-         [Authorize(Roles = "Authenticated")]
+         [Authorize]
         public async Task<IActionResult> GetGamesByUserName()
         {
             var game = await _service.GameService.GetGamesByUserName(User.Identity.Name, false);

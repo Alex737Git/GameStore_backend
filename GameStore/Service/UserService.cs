@@ -26,39 +26,7 @@ namespace Service
             _aws = aws;
         }
 
-        // public async Task<IdentityResult> UpdateUserAsync(string name, UserForUpdateDto userForUpdate,
-        //     bool trackChanges)
-        // {
-        //     User user = await _userManager.FindByNameAsync(name);
-        //
-        //     if (user is null)
-        //         throw new UserNotFoundException(new Guid(name));
-        //
-        //
-        //     
-        //   
-        //     user.FirstName = userForUpdate.FirstName;
-        //     user.LastName = userForUpdate.LastName;
-        //
-        //     var result = await _userManager.UpdateAsync(user);
-        //     if (result.Succeeded)
-        //     {
-        //        result =  await _userManager.SetTwoFactorEnabledAsync(user, userForUpdate.IsTwoFactorAuthorizationEnabled);
-        //     }
-        //
-        //     return result;
-        // }
-
-        // public async Task<UserForUpdateMe> GetUser(string name, bool trackChanges)
-        // {
-        //     User user = await _userManager.FindByNameAsync(name);   
-        //
-        //     if (user is null)
-        //         throw new UserNotFoundException(new Guid(name));
-        //
-        //     var result = _mapper.Map<UserForUpdateMe>(user);
-        //     return result;
-        // }
+   
 
         public async Task<string> UploadPhoto(IFormFile file)
         {

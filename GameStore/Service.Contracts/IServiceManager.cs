@@ -7,5 +7,6 @@
         IUserService UserService { get; }
         ICategoryService CategoryService { get; }
         ICommentService CommentService { get; }
+        IAdminService AdminService { get; }
     }
 }
